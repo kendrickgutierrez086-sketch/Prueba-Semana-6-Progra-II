@@ -1,45 +1,91 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
+
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Calendar;
+
 /**
- *
- * @author kendr
+ * Realiza el analisis recursivo de archivos y carpetas.
  */
 public class Estadisticas {
+
     private int txt=0;
     private int java=0;
     private int pdf=0;
     private int otros=0;
+
     private long tamTxt=0;
     private long tamJava=0;
     private long tamPdf=0;
     private long tamOtros=0;
+
+    private int carpetas=0;
+    private int carpetasVacias=0;
+    private int profundidadMaxima=0;
+
     private File mayor=null;
     private File reciente=null;
+
     private ArrayList<File> archivos=new ArrayList<>();
+    private Set<String> rutasVisitadas=new HashSet<>();
 
     public void analizar(File carpeta){
+        analizar(carpeta,0);
+    }
+
+    public void analizar(File carpeta,int profundidad){
+
         txt=0;
         java=0;
         pdf=0;
         otros=0;
+
         tamTxt=0;
         tamJava=0;
         tamPdf=0;
         tamOtros=0;
+
+        carpetas=0;
+        carpetasVacias=0;
+        profundidadMaxima=0;
+
         mayor=null;
         reciente=null;
+
         archivos.clear();
-        recorrer(carpeta);
+        rutasVisitadas.clear();
+
+        if(carpeta==null || !carpeta.exists() || !carpeta.isDirectory()){
+            return;
+        }
+
+        recorrer(carpeta,0,profundidad);
+
         mostrarResultados();
     }
 
-    private void recorrer(File carpeta){
+    private void recorrer(File carpeta,int nivel,int limite){
+
+        try{
+
+            String ruta=carpeta.getCanonicalPath();
+
+            if(rutasVisitadas.contains(ruta)){
+                return;
+            }
+
+            rutasVisitadas.add(ruta);
+
+        }catch(Exception e){
+            return;
+        }
+
+        if(nivel>profundidadMaxima){
+            profundidadMaxima=nivel;
+        }
 
         File[] contenido=carpeta.listFiles();
 
@@ -47,11 +93,21 @@ public class Estadisticas {
             return;
         }
 
+        boolean vacia=contenido.length==0;
+
+        carpetas++;
+
+        if(vacia){
+            carpetasVacias++;
+        }
+
         for(File elemento:contenido){
 
             if(elemento.isDirectory()){
 
-                recorrer(elemento);
+                if(limite==0 || nivel<limite){
+                    recorrer(elemento,nivel+1,limite);
+                }
 
             }else if(elemento.isFile()){
 
@@ -71,73 +127,182 @@ public class Estadisticas {
     }
 
     private void clasificar(File archivo){
+
         String nombre=archivo.getName().toLowerCase();
-        long tamano=archivo.length();
+        long tamaño=archivo.length();
+
         if(nombre.endsWith(".txt")){
             txt++;
-            tamTxt+=tamano;
+            tamTxt+=tamaño;
+
         }else if(nombre.endsWith(".java")){
             java++;
-            tamJava+=tamano;
+            tamJava+=tamaño;
+
         }else if(nombre.endsWith(".pdf")){
             pdf++;
-            tamPdf+=tamano;
+            tamPdf+=tamaño;
+
         }else{
             otros++;
-            tamOtros+=tamano;
+            tamOtros+=tamaño;
         }
     }
+
     private String convertirTamano(long bytes){
+
         double kb=bytes/1024.0;
+
         if(kb<1024){
             return String.format("%.2f KB",kb);
         }
+
         double mb=kb/1024;
+
         if(mb<1024){
             return String.format("%.2f MB",mb);
         }
+
         double gb=mb/1024;
+
         return String.format("%.2f GB",gb);
     }
 
     private double porcentaje(int cantidad){
-        if(archivos.size()==0){
+
+        if(archivos.isEmpty()){
             return 0;
         }
-        return(cantidad*100.0)/archivos.size();
+
+        return cantidad*100.0/archivos.size();
+    }
+
+    public String generarReporte(){
+
+        StringBuilder texto=new StringBuilder();
+
+        texto.append("REPORTE DE ESTADISTICAS\n");
+        texto.append("========================\n\n");
+
+        texto.append("Total de archivos: ").append(archivos.size()).append("\n");
+        texto.append("Total de carpetas: ").append(carpetas).append("\n");
+        texto.append("Carpetas vacias: ").append(carpetasVacias).append("\n");
+        texto.append("Profundidad maxima: ").append(profundidadMaxima).append("\n\n");
+
+        texto.append("ARCHIVOS TXT\n");
+        texto.append("Cantidad: ").append(txt).append("\n");
+        texto.append("Tamaño: ").append(convertirTamano(tamTxt)).append("\n");
+        texto.append("Porcentaje: ").append(String.format("%.2f",porcentaje(txt))).append("%\n\n");
+
+        texto.append("ARCHIVOS JAVA\n");
+        texto.append("Cantidad: ").append(java).append("\n");
+        texto.append("Tamaño: ").append(convertirTamano(tamJava)).append("\n");
+        texto.append("Porcentaje: ").append(String.format("%.2f",porcentaje(java))).append("%\n\n");
+
+        texto.append("ARCHIVOS PDF\n");
+        texto.append("Cantidad: ").append(pdf).append("\n");
+        texto.append("Tamaño: ").append(convertirTamano(tamPdf)).append("\n");
+        texto.append("Porcentaje: ").append(String.format("%.2f",porcentaje(pdf))).append("%\n\n");
+
+        texto.append("OTROS ARCHIVOS\n");
+        texto.append("Cantidad: ").append(otros).append("\n");
+        texto.append("Tamaño: ").append(convertirTamano(tamOtros)).append("\n");
+        texto.append("Porcentaje: ").append(String.format("%.2f",porcentaje(otros))).append("%\n\n");
+
+        texto.append("Tamaño total: ").append(convertirTamano(tamTxt+tamJava+tamPdf+tamOtros)).append("\n");
+
+        texto.append("Archivo mas grande: ");
+        texto.append(mayor==null?"Ninguno":mayor.getAbsolutePath()).append("\n");
+
+        texto.append("Archivo mas reciente: ");
+        texto.append(reciente==null?"Ninguno":reciente.getAbsolutePath()).append("\n");
+
+        return texto.toString();
     }
 
     public void mostrarResultados(){
+        System.out.println(generarReporte());
+    }
 
-        System.out.println("ESTADISTICAS DE ARCHIVOS");
-        System.out.println("Total de archivos: "+archivos.size());
-        System.out.println("\nARCHIVOS TXT");
-        System.out.println("Cantidad: "+txt);
-        System.out.println("Tamano: "+convertirTamano(tamTxt));
-        System.out.println("Porcentaje: "+String.format("%.2f",porcentaje(txt))+"%");
+    public int getTotalArchivos(){
+        return archivos.size();
+    }
 
-        System.out.println("\nARCHIVOS JAVA");
-        System.out.println("Cantidad: "+java);
-        System.out.println("Tamano: "+convertirTamano(tamJava));
-        System.out.println("Porcentaje: "+String.format("%.2f",porcentaje(java))+"%");
+    public int getTxt(){
+        return txt;
+    }
 
-        System.out.println("\nARCHIVOS PDF");
-        System.out.println("Cantidad: "+pdf);
-        System.out.println("Tamano: "+convertirTamano(tamPdf));
-        System.out.println("Porcentaje: "+String.format("%.2f",porcentaje(pdf))+"%");
-        System.out.println("\nOTROS ARCHIVOS");
-        System.out.println("Cantidad: "+otros);
-        System.out.println("Tamano: "+convertirTamano(tamOtros));
-        System.out.println("Porcentaje: "+String.format("%.2f",porcentaje(otros))+"%");
-        if(mayor!=null){
-            System.out.println("\nARCHIVO MAS GRANDE");
-            System.out.println(mayor.getAbsolutePath());
-            System.out.println(convertirTamano(mayor.length()));
+    public int getJava(){
+        return java;
+    }
+
+    public int getPdf(){
+        return pdf;
+    }
+
+    public int getOtros(){
+        return otros;
+    }
+
+    public String getTamañoTotal(){
+        return convertirTamano(tamTxt+tamJava+tamPdf+tamOtros);
+    }
+
+    public String getTamañoTxt(){
+        return convertirTamano(tamTxt);
+    }
+
+    public String getTamañoJava(){
+        return convertirTamano(tamJava);
+    }
+
+    public String getTamañoPdf(){
+        return convertirTamano(tamPdf);
+    }
+
+    public String getTamañoOtros(){
+        return convertirTamano(tamOtros);
+    }
+
+    public String getPorcentajeTxt(){
+        return String.format("%.2f",porcentaje(txt))+"%";
+    }
+
+    public String getPorcentajeJava(){
+        return String.format("%.2f",porcentaje(java))+"%";
+    }
+
+    public String getPorcentajePdf(){
+        return String.format("%.2f",porcentaje(pdf))+"%";
+    }
+
+    public String getPorcentajeOtros(){
+        return String.format("%.2f",porcentaje(otros))+"%";
+    }
+
+    public int getCarpetas(){
+        return carpetas;
+    }
+
+    public int getCarpetasVacias(){
+        return carpetasVacias;
+    }
+
+    public int getProfundidadMaxima(){
+        return profundidadMaxima;
+    }
+
+    public String getArchivoReciente(){
+        if(reciente==null){
+            return "Ninguno";
         }
-        if(reciente!=null){
-            System.out.println("\nARCHIVO MAS RECIENTE");
-            System.out.println(reciente.getAbsolutePath());
-            System.out.println(new Date(reciente.lastModified()));
+        return reciente.getAbsolutePath();
+    }
+
+    public String getArchivoMayor(){
+        if(mayor==null){
+            return "Ninguno";
         }
+        return mayor.getAbsolutePath()+" ("+convertirTamano(mayor.length())+")";
     }
 }

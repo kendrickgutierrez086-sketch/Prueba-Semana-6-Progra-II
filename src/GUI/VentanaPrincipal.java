@@ -14,8 +14,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
-        initComponents();
-    }
+    initComponents();
+    new Adaptador.AdaptadorPrincipal(this);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,6 +27,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Nombre1 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtRuta = new javax.swing.JTextField();
         btnExaminar = new javax.swing.JButton();
@@ -38,6 +43,62 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnDuplicados = new javax.swing.JButton();
         btnGestionar = new javax.swing.JButton();
         btnBitacora = new javax.swing.JButton();
+        panelFiltros = new javax.swing.JPanel();
+        Nombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        Nombre2 = new javax.swing.JLabel();
+        txtExtension = new javax.swing.JTextField();
+        Nombre3 = new javax.swing.JLabel();
+        txtTamañoMinimo = new javax.swing.JTextField();
+        Nombre4 = new javax.swing.JLabel();
+        txtTamañoMaximo = new javax.swing.JTextField();
+        Nombre6 = new javax.swing.JLabel();
+        txtFechaMinima = new javax.swing.JTextField();
+        Nombre7 = new javax.swing.JLabel();
+        txtFechaMaxima = new javax.swing.JTextField();
+        btnAplicarFiltros = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        panelEstadisticas = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblTotalArchivos = new javax.swing.JLabel();
+        lblTamañoTotal = new javax.swing.JLabel();
+        lblArchivosTxt = new javax.swing.JLabel();
+        lblArchivosJava = new javax.swing.JLabel();
+        lblArchivosPdf = new javax.swing.JLabel();
+        lblOtrosArchivos = new javax.swing.JLabel();
+        lblArchivoReciente = new javax.swing.JLabel();
+        lblArchivoMayor = new javax.swing.JLabel();
+        btnActualizarEstadisticas = new javax.swing.JButton();
+        panelGestion = new javax.swing.JPanel();
+        btnCrearCarpeta = new javax.swing.JButton();
+        btnCrearArchivo = new javax.swing.JButton();
+        btnRenombrar = new javax.swing.JButton();
+        btnCopiar = new javax.swing.JButton();
+        btnMover = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        panelInformacion = new javax.swing.JPanel();
+        lblInfoNombre = new javax.swing.JLabel();
+        lblInfoTipo = new javax.swing.JLabel();
+        lblInfoTamaño = new javax.swing.JLabel();
+        lblInfoUbicacion = new javax.swing.JLabel();
+        panelBitacora = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        areaBitacora = new javax.swing.JTextArea();
+        btnActualizarBitacora = new javax.swing.JButton();
+        btnLimpiarBitacora = new javax.swing.JButton();
+
+        Nombre1.setText("Nombre");
+
+        jTextField2.setText("jTextField1");
+
+        jLabel6.setText("jLabel2");
+
+        jTextField6.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Explorador de archivos");
@@ -52,6 +113,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         btnExaminar.setText("Examinar");
+        btnExaminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExaminarActionPerformed(evt);
+            }
+        });
 
         arbolCarpetas.setShowsRootHandles(true);
         jScrollPane1.setViewportView(arbolCarpetas);
@@ -92,8 +158,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         btnDuplicados.setText("Duplicados");
+        btnDuplicados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDuplicadosActionPerformed(evt);
+            }
+        });
 
         btnGestionar.setText("Gestionar");
+        btnGestionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarActionPerformed(evt);
+            }
+        });
 
         btnBitacora.setText("Bitacora");
         btnBitacora.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +177,415 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnBitacoraActionPerformed(evt);
             }
         });
+
+        Nombre.setText("Nombre");
+
+        txtNombre.setToolTipText("");
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        Nombre2.setText("Extension");
+
+        txtExtension.setToolTipText("...");
+
+        Nombre3.setText("Tamaño minimo");
+
+        txtTamañoMinimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTamañoMinimoActionPerformed(evt);
+            }
+        });
+
+        Nombre4.setText("Tamaño Maximo");
+
+        Nombre6.setText("Fecha minima");
+
+        txtFechaMinima.setText("dd/mm/yy");
+
+        Nombre7.setText("Fecha maxima");
+
+        txtFechaMaxima.setText("dd/mm/yy");
+
+        btnAplicarFiltros.setText("Aplicar filtros");
+        btnAplicarFiltros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarFiltrosActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Limpiar filtros");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelFiltrosLayout = new javax.swing.GroupLayout(panelFiltros);
+        panelFiltros.setLayout(panelFiltrosLayout);
+        panelFiltrosLayout.setHorizontalGroup(
+            panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Nombre2)
+                    .addComponent(txtExtension, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFiltrosLayout.createSequentialGroup()
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Nombre4)
+                            .addComponent(txtTamañoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(Nombre7)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(txtFechaMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelFiltrosLayout.createSequentialGroup()
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Nombre3)
+                            .addComponent(txtTamañoMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Nombre6)
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(txtFechaMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAplicarFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(19, Short.MAX_VALUE))))
+        );
+        panelFiltrosLayout.setVerticalGroup(
+            panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFiltrosLayout.createSequentialGroup()
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(Nombre3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTamañoMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(Nombre6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtFechaMinima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAplicarFiltros))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(Nombre4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTamañoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFiltrosLayout.createSequentialGroup()
+                                .addComponent(Nombre7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtFechaMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2)))))
+                    .addGroup(panelFiltrosLayout.createSequentialGroup()
+                        .addComponent(Nombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Nombre2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtExtension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel2.setText("Total archivos");
+
+        jLabel3.setText("Tamaño total");
+
+        jLabel4.setText("Archivos TXT");
+
+        jLabel5.setText("Archivos JAVA");
+
+        jLabel7.setText("Archivos PDF");
+
+        jLabel8.setText("Otros archivos");
+
+        lblTotalArchivos.setText("0");
+
+        lblTamañoTotal.setText("0 KB");
+
+        lblArchivosTxt.setText("0");
+
+        lblArchivosJava.setText("0");
+
+        lblArchivosPdf.setText("0");
+
+        lblOtrosArchivos.setText("0");
+
+        lblArchivoReciente.setText("Archivo mas reciente: Ninguno");
+
+        lblArchivoMayor.setText("Archivo mas grande: Ninguno");
+
+        btnActualizarEstadisticas.setText("Actualizar estadiscticas");
+        btnActualizarEstadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarEstadisticasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelEstadisticasLayout = new javax.swing.GroupLayout(panelEstadisticas);
+        panelEstadisticas.setLayout(panelEstadisticasLayout);
+        panelEstadisticasLayout.setHorizontalGroup(
+            panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                        .addComponent(lblTotalArchivos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTamañoTotal)
+                        .addGap(89, 89, 89))
+                    .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                        .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(lblArchivosPdf))
+                        .addGap(79, 79, 79)
+                        .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                                .addComponent(lblOtrosArchivos)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                        .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblArchivoMayor)
+                            .addComponent(lblArchivoReciente))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                        .addComponent(lblArchivosTxt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblArchivosJava)
+                        .addGap(125, 125, 125))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEstadisticasLayout.createSequentialGroup()
+                        .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEstadisticasLayout.createSequentialGroup()
+                        .addComponent(btnActualizarEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))))
+        );
+        panelEstadisticasLayout.setVerticalGroup(
+            panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEstadisticasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTotalArchivos)
+                    .addComponent(lblTamañoTotal))
+                .addGap(24, 24, 24)
+                .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblArchivosTxt)
+                    .addComponent(lblArchivosJava))
+                .addGap(12, 12, 12)
+                .addGroup(panelEstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEstadisticasLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblArchivosPdf))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEstadisticasLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblOtrosArchivos)))
+                .addGap(18, 18, 18)
+                .addComponent(lblArchivoReciente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblArchivoMayor)
+                .addGap(30, 30, 30)
+                .addComponent(btnActualizarEstadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        btnCrearCarpeta.setText("Crear carpeta");
+        btnCrearCarpeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearCarpetaActionPerformed(evt);
+            }
+        });
+
+        btnCrearArchivo.setText("Crear archivo");
+        btnCrearArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearArchivoActionPerformed(evt);
+            }
+        });
+
+        btnRenombrar.setText("Renombrar");
+        btnRenombrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRenombrarActionPerformed(evt);
+            }
+        });
+
+        btnCopiar.setText("Copiar");
+        btnCopiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCopiarActionPerformed(evt);
+            }
+        });
+
+        btnMover.setText("Mover");
+        btnMover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoverActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelGestionLayout = new javax.swing.GroupLayout(panelGestion);
+        panelGestion.setLayout(panelGestionLayout);
+        panelGestionLayout.setHorizontalGroup(
+            panelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelGestionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelGestionLayout.createSequentialGroup()
+                        .addComponent(btnCrearCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCopiar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGestionLayout.createSequentialGroup()
+                        .addComponent(btnCrearArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMover, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGestionLayout.createSequentialGroup()
+                        .addComponent(btnRenombrar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        panelGestionLayout.setVerticalGroup(
+            panelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelGestionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearCarpeta)
+                    .addComponent(btnCopiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearArchivo)
+                    .addComponent(btnMover))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRenombrar)
+                    .addComponent(btnEliminar))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        lblInfoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInfoNombre.setText("Nombre: ninguno");
+
+        lblInfoTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInfoTipo.setText("Tipo: ninguno");
+
+        lblInfoTamaño.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInfoTamaño.setText("Tamaño: 0KB");
+
+        lblInfoUbicacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInfoUbicacion.setText("Ubicacion: ninguna");
+
+        javax.swing.GroupLayout panelInformacionLayout = new javax.swing.GroupLayout(panelInformacion);
+        panelInformacion.setLayout(panelInformacionLayout);
+        panelInformacionLayout.setHorizontalGroup(
+            panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInformacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblInfoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblInfoTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblInfoTamaño, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblInfoUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelInformacionLayout.setVerticalGroup(
+            panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInformacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInfoNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblInfoTipo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblInfoTamaño)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblInfoUbicacion)
+                .addContainerGap())
+        );
+
+        areaBitacora.setColumns(20);
+        areaBitacora.setRows(5);
+        jScrollPane3.setViewportView(areaBitacora);
+
+        btnActualizarBitacora.setText("Actualizar");
+        btnActualizarBitacora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarBitacoraActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarBitacora.setText("Limpiar");
+        btnLimpiarBitacora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarBitacoraActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBitacoraLayout = new javax.swing.GroupLayout(panelBitacora);
+        panelBitacora.setLayout(panelBitacoraLayout);
+        panelBitacoraLayout.setHorizontalGroup(
+            panelBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBitacoraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelBitacoraLayout.createSequentialGroup()
+                        .addComponent(btnActualizarBitacora)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpiarBitacora)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelBitacoraLayout.setVerticalGroup(
+            panelBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBitacoraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizarBitacora)
+                    .addComponent(btnLimpiarBitacora))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,28 +597,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAnalizar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDuplicados)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnGestionar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBitacora)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtRuta)
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(9, 9, 9)
+                                                .addComponent(btnAnalizar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnBuscar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnDuplicados)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnGestionar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnBitacora))
+                                            .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(panelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(panelEstadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(panelGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(panelBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,21 +644,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnExaminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnalizar)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnDuplicados)
-                    .addComponent(btnGestionar)
-                    .addComponent(btnBitacora))
-                .addGap(16, 16, 16))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExaminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAnalizar)
+                            .addComponent(btnBuscar)
+                            .addComponent(btnDuplicados)
+                            .addComponent(btnGestionar)
+                            .addComponent(btnBitacora)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(panelGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelBitacora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(4, 4, 4))
         );
 
         pack();
@@ -178,9 +692,205 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBitacoraActionPerformed
 
+    private void btnAplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarFiltrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAplicarFiltrosActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtTamañoMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTamañoMinimoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTamañoMinimoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnDuplicadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuplicadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDuplicadosActionPerformed
+
+    private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGestionarActionPerformed
+
+    private void btnCrearCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCarpetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearCarpetaActionPerformed
+
+    private void btnCrearArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearArchivoActionPerformed
+
+    private void btnRenombrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenombrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRenombrarActionPerformed
+
+    private void btnCopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCopiarActionPerformed
+
+    private void btnMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMoverActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnActualizarEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarEstadisticasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarEstadisticasActionPerformed
+
+    private void btnExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExaminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExaminarActionPerformed
+
+    private void btnActualizarBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarBitacoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarBitacoraActionPerformed
+
+    private void btnLimpiarBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarBitacoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarBitacoraActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public javax.swing.JTextField getTxtRuta(){
+        return txtRuta;
+    }   
+
+    public javax.swing.JButton getBtnExaminar(){
+        return btnExaminar;
+    }
+    public javax.swing.JTree getArbolCarpetas(){
+        return arbolCarpetas;
+    }
+    public javax.swing.JTable getTablaArchivos(){
+    return tablaArchivos;
+}
+
+public javax.swing.JLabel getLblInfoNombre(){
+    return lblInfoNombre;
+}
+
+public javax.swing.JLabel getLblInfoTipo(){
+    return lblInfoTipo;
+}
+
+public javax.swing.JLabel getLblInfoTamaño(){
+    return lblInfoTamaño;
+}
+
+public javax.swing.JLabel getLblInfoUbicacion(){
+    return lblInfoUbicacion;
+}
+public javax.swing.JTextField getTxtNombre(){
+    return txtNombre;
+}
+
+public javax.swing.JTextField getTxtExtension(){
+    return txtExtension;
+}
+
+public javax.swing.JTextField getTxtTamañoMinimo(){
+    return txtTamañoMinimo;
+}
+
+public javax.swing.JTextField getTxtTamañoMaximo(){
+    return txtTamañoMaximo;
+}
+
+public javax.swing.JTextField getTxtFechaMinima(){
+    return txtFechaMinima;
+}
+
+public javax.swing.JTextField getTxtFechaMaxima(){
+    return txtFechaMaxima;
+}
+
+public javax.swing.JButton getBtnAplicarFiltros(){
+    return btnAplicarFiltros;
+}
+
+public javax.swing.JButton getBtnLimpiarFiltros(){
+    return jButton2;
+}
+public javax.swing.JButton getBtnActualizarEstadisticas(){
+    return btnActualizarEstadisticas;
+}
+
+public javax.swing.JLabel getLblTotalArchivos(){
+    return lblTotalArchivos;
+}
+
+public javax.swing.JLabel getLblTamañoTotal(){
+    return lblTamañoTotal;
+}
+
+public javax.swing.JLabel getLblArchivosTxt(){
+    return lblArchivosTxt;
+}
+
+public javax.swing.JLabel getLblArchivosJava(){
+    return lblArchivosJava;
+}
+
+public javax.swing.JLabel getLblArchivosPdf(){
+    return lblArchivosPdf;
+}
+
+public javax.swing.JLabel getLblOtrosArchivos(){
+    return lblOtrosArchivos;
+}
+
+public javax.swing.JLabel getLblArchivoReciente(){
+    return lblArchivoReciente;
+}
+
+public javax.swing.JLabel getLblArchivoMayor(){
+    return lblArchivoMayor;
+}
+public javax.swing.JButton getBtnDuplicados(){
+    return btnDuplicados;
+}
+public javax.swing.JButton getBtnCrearCarpeta(){
+    return btnCrearCarpeta;
+}
+
+public javax.swing.JButton getBtnCrearArchivo(){
+    return btnCrearArchivo;
+}
+
+public javax.swing.JButton getBtnRenombrar(){
+    return btnRenombrar;
+}
+
+public javax.swing.JButton getBtnCopiar(){
+    return btnCopiar;
+}
+
+public javax.swing.JButton getBtnMover(){
+    return btnMover;
+}
+
+public javax.swing.JButton getBtnEliminar(){
+    return btnEliminar;
+}
+public javax.swing.JTextArea getAreaBitacora(){
+    return areaBitacora;
+}
+
+public javax.swing.JButton getBtnActualizarBitacora(){
+    return btnActualizarBitacora;
+}
+
+public javax.swing.JButton getBtnLimpiarBitacora(){
+    return btnLimpiarBitacora;
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -214,17 +924,69 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel Nombre1;
+    private javax.swing.JLabel Nombre2;
+    private javax.swing.JLabel Nombre3;
+    private javax.swing.JLabel Nombre4;
+    private javax.swing.JLabel Nombre6;
+    private javax.swing.JLabel Nombre7;
     private javax.swing.JTree arbolCarpetas;
+    private javax.swing.JTextArea areaBitacora;
+    private javax.swing.JButton btnActualizarBitacora;
+    private javax.swing.JButton btnActualizarEstadisticas;
     private javax.swing.JButton btnAnalizar;
+    private javax.swing.JButton btnAplicarFiltros;
     private javax.swing.JButton btnBitacora;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCopiar;
+    private javax.swing.JButton btnCrearArchivo;
+    private javax.swing.JButton btnCrearCarpeta;
     private javax.swing.JButton btnDuplicados;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExaminar;
     private javax.swing.JButton btnGestionar;
+    private javax.swing.JButton btnLimpiarBitacora;
+    private javax.swing.JButton btnMover;
+    private javax.swing.JButton btnRenombrar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblArchivoMayor;
+    private javax.swing.JLabel lblArchivoReciente;
+    private javax.swing.JLabel lblArchivosJava;
+    private javax.swing.JLabel lblArchivosPdf;
+    private javax.swing.JLabel lblArchivosTxt;
+    private javax.swing.JLabel lblInfoNombre;
+    private javax.swing.JLabel lblInfoTamaño;
+    private javax.swing.JLabel lblInfoTipo;
+    private javax.swing.JLabel lblInfoUbicacion;
+    private javax.swing.JLabel lblOtrosArchivos;
+    private javax.swing.JLabel lblTamañoTotal;
+    private javax.swing.JLabel lblTotalArchivos;
+    private javax.swing.JPanel panelBitacora;
+    private javax.swing.JPanel panelEstadisticas;
+    private javax.swing.JPanel panelFiltros;
+    private javax.swing.JPanel panelGestion;
+    private javax.swing.JPanel panelInformacion;
     private javax.swing.JTable tablaArchivos;
+    private javax.swing.JTextField txtExtension;
+    private javax.swing.JTextField txtFechaMaxima;
+    private javax.swing.JTextField txtFechaMinima;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRuta;
+    private javax.swing.JTextField txtTamañoMaximo;
+    private javax.swing.JTextField txtTamañoMinimo;
     // End of variables declaration//GEN-END:variables
 }

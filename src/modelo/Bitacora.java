@@ -45,5 +45,10 @@ public class Bitacora {
     public File getArchivo(){
         return archivo;
     }
+    public void limpiarBitacora()throws IOException{
+
+    FileWriter escribir=new FileWriter(archivo,false);
+    escribir.close();
+}
     
 }
